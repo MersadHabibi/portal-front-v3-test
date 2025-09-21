@@ -190,6 +190,6 @@ body {
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .swiper-pagination {
-    bottom: 35% !important;
+    bottom: 32% !important;
   }
 }

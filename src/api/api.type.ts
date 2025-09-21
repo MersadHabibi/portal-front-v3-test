@@ -61,3 +61,10 @@ export type TGetPortfolioList = {
   data: TPortfolio[];
   meta: TMeta;
 };
+
+
+export type TGetSliderPosts = {
+  message: string
+  data: TPostItem[]
+  meta: TMeta
+}

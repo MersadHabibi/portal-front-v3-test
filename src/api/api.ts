@@ -1,4 +1,4 @@
-import { TCreateComment } from "./api.type";
+import { TCreateComment, TGetSliderPosts } from './api.type'
 
 export function handleQueries(
   queries: Record<string, number | string | undefined>
@@ -161,4 +161,21 @@ export async function FGetPortfolioList({
       method: "GET",
     }
   );
+}
+
+
+export async function FGetSliderPosts(): Promise<TGetSliderPosts> {
+  const res = await fetch(
+    process.env.baseUrl + `/api/v1/client/web/getPostList?isSlider=true`,
+    {
+      method: 'GET',
+      cache: 'no-store',
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch slider posts')
+  }
+
+  return await res.json()
 }

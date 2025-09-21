@@ -92,7 +92,7 @@ export default function HeroSlider() {
         ))}
 
         <div className="absolute z-[5] flex flex-col gap-3 right-[4%] bottom-[50%] justify-center items-center w-auto">
-          <button className=" hero-next cursor-pointer bg-white/80 backdrop-blur-2xl  border-black/80 border-1 text-primary rounded-full p-1 sm:p-2 shadow-md hover:bg-primary hover:text-white transition">
+          <button className=" hero-prev cursor-pointer bg-white/80 backdrop-blur-2xl  border-black/80 border-1 text-primary rounded-full p-1 sm:p-2 shadow-md hover:bg-primary hover:text-white transition">
             {' '}
             <svg
               className="w-5 h-5 sm:w-8 sm:h-8"

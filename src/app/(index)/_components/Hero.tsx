@@ -178,7 +178,7 @@ export default function Hero({
         <div className="absolute inset-0 size-full bg-gradient-to-t from-white/100 to-white/20 z-[2]" />
       </div> */}
       <HeroSlider posts={sliderPosts} /> {/* inner container */}
-      <div className="  z-[20]  -mt-10 sm:-mt-30    lg:-mt-45     flex flex-col justify-start items-center w-full max-w-[1090px] bg-transparent px-5 sm:px-3">
+      <div className="  z-[10]  -mt-10 sm:-mt-30    lg:-mt-45     flex flex-col justify-start items-center w-full max-w-[1090px] bg-transparent px-5 sm:px-3">
         {/* <div className="relative top-[50px] sm:top-[80px] w-full max-w-[774px] text-[#A9833D] text-2xl/[45px] sm:text-3xl/[70px] font-bold text-center ">
           <span className="bg-primary px-2 py-1 rounded-full text-white">بنیاد روایت فتح</span>{" "}
           <div className="inline [&>p]:inline" dangerouslySetInnerHTML={{ __html: title }} />

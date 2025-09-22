@@ -75,3 +75,9 @@ export type TGetGalleryItems = {
   data: TPortfolio[]
   meta: TMeta
 }
+
+
+export type TGetPortfolioItem = {
+  message: string
+  data: TPortfolio
+}

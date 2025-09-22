@@ -1,4 +1,9 @@
-import { TCreateComment, TGetSliderPosts, TGetGalleryItems } from './api.type'
+import {
+  TCreateComment,
+  TGetSliderPosts,
+  TGetGalleryItems,
+  TGetPortfolioItem,
+} from './api.type'
 
 export function handleQueries(
   queries: Record<string, number | string | undefined>
@@ -207,6 +212,26 @@ export async function FGetGalleryItems({
 
   if (!res.ok) {
     throw new Error('Failed to fetch gallery items')
+  }
+
+  return await res.json()
+}
+
+export async function FGetPortfolioItem({
+  id,
+}: {
+  id: number
+}): Promise<TGetPortfolioItem> {
+  const res = await fetch(
+    process.env.baseUrl + `/api/v1/client/web/getPortfolio/${id}`,
+    {
+      method: 'GET',
+      next: { revalidate: 60 },
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch portfolio item')
   }
 
   return await res.json()

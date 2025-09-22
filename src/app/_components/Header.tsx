@@ -1,38 +1,39 @@
-"use client";
+'use client'
 
-import { cn } from "@/lib/style";
-import { Menu, X } from "lucide-react";
-import Logo from "./Logo";
-import Link from "next/link";
+import { cn } from '@/lib/style'
+import { Menu, X } from 'lucide-react'
+import Logo from './Logo'
+import Link from 'next/link'
 // import { useSearchParams } from "next/navigation";
 // import useSearchQueries from "@/hooks/useSearchQueries";
-import { useEffect, useState } from "react";
-import Logo2 from "./Logo2";
-import SearchNews from "./SearchNews";
+import { useEffect, useState } from 'react'
+import Logo2 from './Logo2'
+import SearchNews from './SearchNews'
 
 const navbarLinks = [
-  { title: "خانه", href: "/" },
-  { title: "اخبار و رویداد ها", href: "/news" },
-  { title: "نوا و نما", href: "/gallery" },
-  { title: "تماس با ما", href: "/contact-us" },
-  { title: "درباره ما", href: "/about-us" },
-];
+  { title: 'خانه', href: '/' },
+  { title: 'اخبار و رویداد ها', href: '/news' },
+  { title: 'نوا و نما', href: '/gallery' },
+  { title: 'عکس', href: '/photo' },
+  { title: 'تماس با ما', href: '/contact-us' },
+  { title: 'درباره ما', href: '/about-us' },
+]
 
 export default function Header({
   isIndexPage = false,
   className,
 }: {
-  isIndexPage?: boolean;
-  className?: string;
+  isIndexPage?: boolean
+  className?: string
 }) {
   return (
     <>
       {/* mobile */}
       <div
         className={cn(
-          "w-full flex lg:hidden print:hidden justify-between py-2 px-5 border-b border-[#CCCCCC] bg-white",
+          'w-full flex lg:hidden print:hidden justify-between py-2 px-5 border-b border-[#CCCCCC] bg-white',
           className,
-          isIndexPage && "bg-transparent border-b border-white"
+          isIndexPage && 'bg-transparent border-b border-white'
         )}
       >
         <MobileMenu />
@@ -42,9 +43,9 @@ export default function Header({
       {/* desktop */}
       <div
         className={cn(
-          "w-full hidden lg:flex print:flex justify-between py-0 pt-2 px-14 border-b border-[#CCCCCC] bg-white",
+          'w-full hidden lg:flex print:flex justify-between py-0 pt-2 px-14 border-b border-[#CCCCCC] bg-white',
           className,
-          isIndexPage && "bg-transparent border-b border-white"
+          isIndexPage && 'bg-transparent border-b border-white'
         )}
       >
         {/* right section */}
@@ -53,7 +54,7 @@ export default function Header({
             <Logo className="w-[154px] h-[61px]" />
           </Link>
           <div className="flex print:hidden justify-start gap-5 xl:gap-10 items-center">
-            {navbarLinks.slice(0, 3).map((navLink, index) => (
+            {navbarLinks.slice(0, 4).map((navLink, index) => (
               <Link
                 key={index}
                 href={navLink.href}
@@ -68,7 +69,7 @@ export default function Header({
         {/* left section */}
         <div className="flex print:hidden justify-end gap-10 xl:gap-16 items-center">
           <div className="flex justify-start gap-5 xl:gap-10 items-center">
-            {navbarLinks.slice(-2).map((navLink, index) => (
+            {navbarLinks.slice(4).map((navLink, index) => (
               <Link
                 key={index}
                 href={navLink.href}
@@ -79,13 +80,13 @@ export default function Header({
             ))}
           </div>
           <SearchNews
-            classNames={{ container: "bg-white/30", input: "w-36 xl:w-44" }}
+            classNames={{ container: 'bg-white/30', input: 'w-36 xl:w-44' }}
           />
         </div>
         {/* <LangSelector /> */}
       </div>
     </>
-  );
+  )
 }
 
 // function LangSelector({ className }: { className?: string }) {
@@ -130,17 +131,17 @@ export default function Header({
 // }
 
 function MobileMenu() {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     if (isOpen) {
-      document.body.classList.add("overflow-hidden");
+      document.body.classList.add('overflow-hidden')
     } else {
-      document.body.classList.remove("overflow-hidden");
+      document.body.classList.remove('overflow-hidden')
     }
 
-    return () => document.body.classList.remove("overflow-hidden");
-  }, [isOpen]);
+    return () => document.body.classList.remove('overflow-hidden')
+  }, [isOpen])
 
   return (
     <>
@@ -153,8 +154,8 @@ function MobileMenu() {
 
       <div
         className={cn(
-          "fixed inset-0 z-[50] bg-primary/80 backdrop-blur-md flex flex-col justify-center gap-8 items-center p-5 transition-all duration-300 ease-in-out",
-          isOpen ? "visible opacity-100" : "invisible opacity-0"
+          'fixed inset-0 z-[50] bg-primary/80 backdrop-blur-md flex flex-col justify-center gap-8 items-center p-5 transition-all duration-300 ease-in-out',
+          isOpen ? 'visible opacity-100' : 'invisible opacity-0'
         )}
       >
         <button
@@ -168,8 +169,8 @@ function MobileMenu() {
 
         <SearchNews
           classNames={{
-            container: "mb-3 bg-white/30 w-[85%] sm:w-[70%] md:w-[60%]",
-            input: "flex-1",
+            container: 'mb-3 bg-white/30 w-[85%] sm:w-[70%] md:w-[60%]',
+            input: 'flex-1',
           }}
         />
 
@@ -184,5 +185,5 @@ function MobileMenu() {
         ))}
       </div>
     </>
-  );
+  )
 }

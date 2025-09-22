@@ -1,4 +1,4 @@
-import { TCreateComment, TGetSliderPosts } from './api.type'
+import { TCreateComment, TGetSliderPosts, TGetGalleryItems } from './api.type'
 
 export function handleQueries(
   queries: Record<string, number | string | undefined>
@@ -11,58 +11,58 @@ export function handleQueries(
         if (value)
           return `${encodeURIComponent(key)}=${encodeURIComponent(
             String(value)
-          )}`;
+          )}`
       })
-      .join("&")
-  );
+      .join('&')
+  )
 }
 
 export async function FGetPage({
-  type = "PAGE",
+  type = 'PAGE',
   url,
 }: {
-  type?: string;
-  url: string;
+  type?: string
+  url: string
 }) {
   return await fetch(
     process.env.baseUrl + `/api/v1/client/web/getPage/${type}/${url}`,
     {
-      method: "GET",
-      cache: "no-store",
+      method: 'GET',
+      cache: 'no-store',
     }
-  );
+  )
 }
 
 export async function FGetPostList({
   page,
   limit,
-  search
+  search,
 }: {
-  page?: number;
-  limit?: number;
-  search?:string;
+  page?: number
+  limit?: number
+  search?: string
 }) {
   return await fetch(
     process.env.baseUrl +
       `/api/v1/client/web/getPostList?${handleQueries({
         page,
         limit,
-        search
+        search,
       })}`,
     {
-      cache: "no-store",
-      method: "GET",
+      cache: 'no-store',
+      method: 'GET',
     }
-  );
+  )
 }
 export async function FGetCategoriesPostList({
   page,
   limit,
   id,
 }: {
-  page?: number;
-  limit?: number;
-  id: number;
+  page?: number
+  limit?: number
+  id: number
 }) {
   return await fetch(
     process.env.baseUrl +
@@ -71,41 +71,41 @@ export async function FGetCategoriesPostList({
         limit,
       })}`,
     {
-      cache: "no-store",
-      method: "GET",
+      cache: 'no-store',
+      method: 'GET',
     }
-  );
+  )
 }
 
 export async function FGetPost({
-  type = "POST",
+  type = 'POST',
   url,
 }: {
-  type?: string;
-  url: string;
+  type?: string
+  url: string
 }) {
   return await fetch(
     process.env.baseUrl + `/api/v1/client/web/getPost/${type}/${url}`,
-    { cache: "no-store" }
-  );
+    { cache: 'no-store' }
+  )
 }
 
 export async function FGetGeneralSetting() {
   return await fetch(
-    process.env.baseUrl + "/api/v1/client/web/getGeneralSetting",
+    process.env.baseUrl + '/api/v1/client/web/getGeneralSetting',
     {
-      method: "GET",
+      method: 'GET',
     }
-  );
+  )
 }
 
 export async function FGetCategoryList() {
   return await fetch(
     process.env.baseUrl + `/api/v1/client/web/getPostCategoriesList`,
     {
-      method: "GET",
+      method: 'GET',
     }
-  );
+  )
 }
 
 export async function FGetCommentList({
@@ -114,10 +114,10 @@ export async function FGetCommentList({
   page,
   limit = 5,
 }: {
-  type?: string;
-  id: number;
-  page: number;
-  limit?: number;
+  type?: string
+  id: number
+  page: number
+  limit?: number
 }) {
   return await fetch(
     process.env.baseUrl +
@@ -126,30 +126,30 @@ export async function FGetCommentList({
         limit,
       })}`,
     {
-      method: "GET",
+      method: 'GET',
     }
-  );
+  )
 }
 
 export async function FCreateComment({ props }: { props: TCreateComment }) {
   return await fetch(
     process.env.baseUrl + `/api/v1/client/comment/createComment`,
     {
-      method: "POST",
+      method: 'POST',
       body: JSON.stringify(props),
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     }
-  );
+  )
 }
 
 export async function FGetPortfolioList({
   page,
   limit = 5,
 }: {
-  page: number;
-  limit?: number;
+  page: number
+  limit?: number
 }) {
   return await fetch(
     process.env.baseUrl +
@@ -158,11 +158,10 @@ export async function FGetPortfolioList({
         limit,
       })}`,
     {
-      method: "GET",
+      method: 'GET',
     }
-  );
+  )
 }
-
 
 export async function FGetSliderPosts(): Promise<TGetSliderPosts> {
   const res = await fetch(
@@ -175,6 +174,39 @@ export async function FGetSliderPosts(): Promise<TGetSliderPosts> {
 
   if (!res.ok) {
     throw new Error('Failed to fetch slider posts')
+  }
+
+  return await res.json()
+}
+
+export async function FGetGalleryItems({
+  page,
+  limit = 5,
+  categoryId,
+  isSlider,
+}: {
+  page?: number
+  limit?: number
+  categoryId?: number
+  isSlider?: boolean
+}): Promise<TGetGalleryItems> {
+  const query = handleQueries({
+    page,
+    limit,
+    categoryId,
+    isSlider: isSlider ? 'true' : undefined,
+  })
+
+  const res = await fetch(
+    process.env.baseUrl + `/api/v1/client/web/getPortfolioList?${query}`,
+    {
+      method: 'GET',
+      cache: 'no-store',
+    }
+  )
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch gallery items')
   }
 
   return await res.json()

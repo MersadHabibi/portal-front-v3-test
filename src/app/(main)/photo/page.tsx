@@ -1,10 +1,9 @@
-import React from 'react'
-import GalleryTopSlider from '../_components/template/photo/GalleryTopSlider'
+import GalleryTopSlider from '@/app/(main)/_components/template/photo/GalleryTopSlider'
+import { FGetGalleryItems } from '@/api/api'
 
-export default function photo() {
-  return (
-    <>
-      <GalleryTopSlider />
-    </>
-  )
+export default async function PhotoPage() {
+  const res = await FGetGalleryItems({ isSlider: true })
+  const slides = res?.data || []
+
+  return <GalleryTopSlider slides={slides} />
 }

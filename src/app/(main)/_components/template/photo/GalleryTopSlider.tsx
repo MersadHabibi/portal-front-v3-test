@@ -15,7 +15,7 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
   const progressCircle = useRef<SVGCircleElement>(null)
   const progressContent = useRef<HTMLSpanElement>(null)
 
-  const onAutoplayTimeLeft = (_swiper: any, time: number, progress: number) => {
+  const onAutoplayTimeLeft = (_swiper: any, time: number) => {
     const total = _swiper.params.autoplay?.delay || 4000
     const percent = 1 - time / total
     const offset = 125.6 * percent
@@ -31,7 +31,7 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
   if (!slides.length) return null
 
   return (
-    <div className="w-full max-w-screen-xl mx-auto px-4 aspect-square sm:px-6 lg:px-8 relative mt-10">
+    <div className="w-full max-w-screen-xl mx-auto px-4 aspect-[16/9] sm:px-6 lg:px-8 relative my-10">
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{ delay: 4000, disableOnInteraction: false }}
@@ -55,7 +55,7 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
           const imageUrl = item.media?.[0]?.url || ''
           return (
             <SwiperSlide key={item.id}>
-              <Link href={`/gallery/photo/${item.id}`} className="block">
+              <Link href={`/photo/${item.id}`} className="block">
                 <div className="relative w-full aspect-[16/14] md:aspect-[16/9]">
                   {imageUrl ? (
                     <Image
@@ -71,7 +71,7 @@ export default function GalleryTopSlider({ slides }: { slides: TPortfolio[] }) {
                     </div>
                   )}
                   <div className="absolute bottom-0 left-0 right-0 transition-all duration-300 hover:text-primary bg-gradient-to-t from-black/70 to-transparent text-white p-4">
-                    <h3 className="text-sm sm:text-xl font-bold">
+                    <h3 className="text-sm sm:text-xl font-bold line-clamp-1 overflow-hidden">
                       {item.title}
                     </h3>
                   </div>

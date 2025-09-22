@@ -196,6 +196,7 @@ body {
   justify-content: center;
   gap: 8px;
 }
+
 .gallery-pagination {
   position: absolute !important;
   bottom: 13.5% !important;
@@ -213,6 +214,11 @@ body {
     bottom: 15% !important;
   }
 
+  .gallery-pagination {
+    bottom: 15.5% !important;
+
+  }
+
   .custom-bullet {
     width: 13px;
     height: 13px;
@@ -220,6 +226,18 @@ body {
   }
 
   .custom-bullet-active {
+    width: 20px;
+    height: 13px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+  }
+
+  .custom-bullet-Gallery {
+    width: 13px;
+    height: 13px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .custom-bullet-Gallery-active {
     width: 20px;
     height: 13px;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);

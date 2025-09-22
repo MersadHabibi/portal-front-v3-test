@@ -3,11 +3,12 @@
 import Header from '@/app/_components/Header'
 import { cn } from '@/lib/style'
 import InnerHTML from '@/modules/InnerHTML'
-import { TPage } from '@/types'
+import { TPage, TPostItem } from '@/types'
 import { ChevronLeftCircle, ChevronRightCircle } from 'lucide-react'
 import Image from 'next/image'
 import { MouseEvent, useEffect, useRef, useState } from 'react'
 import HeroSlider from './HeroSlider'
+import { FGetSliderPosts } from '@/api/api'
 
 enum KeyValues {
   HERO_TITLE = 'hero-title',
@@ -16,7 +17,13 @@ enum KeyValues {
   SUBCATEGORIES_DETAIL = 'subCategories-detail', //many seperated by -number
 }
 
-export default function Hero({ pageData }: { pageData: TPage | null }) {
+export default function Hero({
+  pageData,
+  sliderPosts,
+}: {
+  pageData: TPage | null
+  sliderPosts: TPostItem[]
+}) {
   const firstElementRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
@@ -166,14 +173,11 @@ export default function Hero({ pageData }: { pageData: TPage | null }) {
   return (
     <>
       <Header className="z-[20]" />
-
       {/* <div className="absolute top-[57px] lg:top-[70px] aspect-16/9 sm:aspect-[16/7]">
         <Image src={image || "/images/avini.jpg"} alt="hero image" width={1900} height={1260} className="object-cover size-full object-[0%_35%] z-[1]" />
         <div className="absolute inset-0 size-full bg-gradient-to-t from-white/100 to-white/20 z-[2]" />
       </div> */}
-      <HeroSlider />
-
-      {/* inner container */}
+      <HeroSlider posts={sliderPosts} /> {/* inner container */}
       <div className="  z-[20]  -mt-10 sm:-mt-30    lg:-mt-45     flex flex-col justify-start items-center w-full max-w-[1090px] bg-transparent px-5 sm:px-3">
         {/* <div className="relative top-[50px] sm:top-[80px] w-full max-w-[774px] text-[#A9833D] text-2xl/[45px] sm:text-3xl/[70px] font-bold text-center ">
           <span className="bg-primary px-2 py-1 rounded-full text-white">بنیاد روایت فتح</span>{" "}

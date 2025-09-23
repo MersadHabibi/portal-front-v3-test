@@ -13,7 +13,7 @@ import SearchNews from './SearchNews'
 const navbarLinks = [
   { title: 'خانه', href: '/' },
   { title: 'اخبار و رویداد ها', href: '/news' },
-  { title: 'نوا و نما', href: '/gallery' },
+  { title: ' فیلم', href: '/gallery' },
   { title: 'عکس', href: '/photo' },
   { title: 'تماس با ما', href: '/contact-us' },
   { title: 'درباره ما', href: '/about-us' },

@@ -8,7 +8,7 @@ const formSchema = z.object({
   body: z.string().nonempty("لطفا متن دیدگاه تان را بنویسید!"),
 });
 
-export type VCreateCommentForm = z.infer<typeof formSchema>;
+export type  VCreateCommentForm = z.infer<typeof formSchema>;
 
 export default function useCreateCommentForm() {
   return useForm<VCreateCommentForm>({

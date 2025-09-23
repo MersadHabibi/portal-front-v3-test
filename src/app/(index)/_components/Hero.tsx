@@ -14,7 +14,7 @@ enum KeyValues {
   HERO_TITLE = 'hero-title',
   HERO_IMAGE = 'hero-image',
   SUBCATEGORIES_LOGO = 'subCategories-logo', //many seperated by -number
-  SUBCATEGORIES_DETAIL = 'subCategories-detail', //many seperated by -number
+  SUBCATEGORIES_DETAIL =  'subCategories-detail', //many seperated by -number
 }
 
 export default function Hero({
@@ -178,7 +178,7 @@ export default function Hero({
         <div className="absolute inset-0 size-full bg-gradient-to-t from-white/100 to-white/20 z-[2]" />
       </div> */}
       <HeroSlider posts={sliderPosts} /> {/* inner container */}
-      <div className="  z-[10]  -mt-10 sm:-mt-30    lg:-mt-45     flex flex-col justify-start items-center w-full max-w-[1090px] bg-transparent px-5 sm:px-3">
+      <div className="  z-[10]   mt-15 lg:mt-[180px]   flex flex-col justify-start items-center w-full max-w-[1090px] bg-transparent px-5 sm:px-3">
         {/* <div className="relative top-[50px] sm:top-[80px] w-full max-w-[774px] text-[#A9833D] text-2xl/[45px] sm:text-3xl/[70px] font-bold text-center ">
           <span className="bg-primary px-2 py-1 rounded-full text-white">بنیاد روایت فتح</span>{" "}
           <div className="inline [&>p]:inline" dangerouslySetInnerHTML={{ __html: title }} />
@@ -223,13 +223,15 @@ export default function Hero({
                 key={index}
                 data-logo-key={logo.key}
                 className={cn(
-                  'flex justify-center items-center rounded-tl-custom100 rounded-tr-custom100 overflow-hidden w-[145px] h-[100px] p-2 bg-transparent shrink-0 transition-all duration-500 ease-in-out',
-                  logo.key.endsWith(`-${activeSubCategoryNumber}`) && 'bg-white'
+                  'flex justify-center items-center rounded-tl-custom100 rounded-tr-custom100 overflow-hidden w-[145px] h-[100px] p-2 shrink-0 transition-colors duration-300 ease-in-out',
+                  logo.key.endsWith(`-${activeSubCategoryNumber}`)
+                    ? 'bg-white/20 shadow-2xl border'
+                    : 'bg-transparent'
                 )}
               >
                 <Image
                   src={logo.filesValue.url || '/images/image-placeholder.jpg'}
-                  alt={'logo'}
+                  alt="logo"
                   width={500}
                   height={500}
                   className="size-[80%] object-contain"
@@ -257,7 +259,7 @@ export default function Hero({
           onMouseLeave={() => setIsHovering(false)}
         >
           <InnerHTML
-            style="w-full max-w-[675px] [&>div>p>a]:text-blue-500 [&>div>p>a]:underline [&>div>p>a]:underline-offset-5 transition-opacity duration-500 ease-in-out"
+            style="w-full max-w-[675px]    text-black [&>div>p>a]:text-blue-500 [&>div>p>a]:underline [&>div>p>a]:underline-offset-5 transition-opacity duration-500 ease-in-out"
             details={
               details?.find((detail) =>
                 detail.key.endsWith(`-${activeSubCategoryNumber}`)

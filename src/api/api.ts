@@ -202,6 +202,8 @@ export async function FGetGalleryItems({
     isSlider: isSlider ? 'true' : undefined,
   })
 
+  console.log(query, 'query')
+
   const res = await fetch(
     process.env.baseUrl + `/api/v1/client/web/getPortfolioList?${query}`,
     {
@@ -219,11 +221,14 @@ export async function FGetGalleryItems({
 
 export async function FGetPortfolioItem({
   id,
+  categoryId,
 }: {
-  id: number
+  id: string
+  categoryId?: number
 }): Promise<TGetPortfolioItem> {
+  const query = categoryId ? `?categoryId=${categoryId}` : ''
   const res = await fetch(
-    process.env.baseUrl + `/api/v1/client/web/getPortfolio/${id}`,
+    `${process.env.baseUrl}/api/v1/client/web/getPortfolio/${id}${query}`,
     {
       method: 'GET',
       next: { revalidate: 60 },

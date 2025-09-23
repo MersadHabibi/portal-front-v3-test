@@ -112,9 +112,9 @@ body {
     url("/fonts/Woff2/IRANYekanXFaNum-Regular.woff2") format("woff2");
 }
 
-.ql-editor {
-  direction: rtl;
-  text-align: right;
+.ql-editor,
+.ql-editor * {
+  color: inherit !important;
 }
 
 .ql-editor {
@@ -126,7 +126,6 @@ body {
 .rtl .ql-editor {
   direction: rtl;
   text-align: right;
-  font-family: var(--font-iranYekan), sans-serif !important;
 }
 
 .ltr .ql-editor {
@@ -138,8 +137,8 @@ body {
   width: 15px;
   height: 15px;
   border-radius: 9999px;
-  background-color: rgba(0, 0, 0, 0.5);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -151,8 +150,8 @@ body {
   width: 25px;
   height: 15px;
   border-radius: 9999px;
-  background-color: rgba(169, 131, 61, 0.85);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  background-color: rgba(169, 131, 61, 0.8);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
@@ -187,7 +186,7 @@ body {
 
 .swiper-pagination {
   position: absolute !important;
-  bottom: 22.5% !important;
+  bottom: 20.5% !important;
   left: 0 !important;
   right: 0 !important;
   margin-inline: auto !important;
@@ -211,7 +210,7 @@ body {
 
 @media (max-width: 640px) {
   .swiper-pagination {
-    bottom: 15% !important;
+    bottom: 10% !important;
   }
 
   .gallery-pagination {
@@ -246,6 +245,6 @@ body {
 
 @media (min-width: 641px) and (max-width: 1024px) {
   .swiper-pagination {
-    bottom: 32% !important;
+    bottom: 10% !important;
   }
 }

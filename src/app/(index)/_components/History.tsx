@@ -39,7 +39,7 @@ export default function History({ pageData }: { pageData: TPage | null }) {
           alt="signiture"
           width={500}
           height={300}
-          className="object-cover size-full"
+          className="object-cover size-full  hidden sm:inline-block"
         />
       </div>
       <Swiper

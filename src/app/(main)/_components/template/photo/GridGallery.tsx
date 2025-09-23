@@ -12,7 +12,11 @@ type Props = {
 
 export default function GridGallery({ items, pageInfo }: Props) {
   if (!items.length)
-    return <p className="text-center py-10 text-muted">موردی یافت نشد.</p>
+    return (
+      <p className="text-center py-10 text-muted  animate-bounce text-primary">
+        موردی یافت نشد.
+      </p>
+    )
 
   return (
     <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
@@ -23,23 +27,55 @@ export default function GridGallery({ items, pageInfo }: Props) {
             className="group rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 bg-white"
           >
             <Link
-              href={`/photo/${item.id}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={
+                item.media?.[0]?.type === 'video'
+                  ? `/gallery/${item.id}`
+                  : `/photo/${item.id}`
+              }
+              target={item.media?.[0]?.type === 'video' ? undefined : '_blank'}
+              rel={
+                item.media?.[0]?.type === 'video'
+                  ? undefined
+                  : 'noopener noreferrer'
+              }
               className="block"
             >
               <figure className="relative w-full aspect-[16/9] overflow-hidden">
-                <Image
-                  src={item.media?.[0]?.url || '/images/image-placeholder.jpg'}
-                  alt={item.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
+                {item.media?.[0]?.type === 'video' ? (
+                  <>
+                    <video
+                      src={item.media[0].url}
+                      className="w-full h-full object-cover"
+                      muted
+                      loop
+                      playsInline
+                      controls={false}
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      <svg
+                        className="w-14 h-14 md:w-18 md:h-18 text-white opacity-80"
+                        fill="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </>
+                ) : (
+                  <Image
+                    src={
+                      item.media?.[0]?.url || '/images/image-placeholder.jpg'
+                    }
+                    alt={item.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                )}
               </figure>
 
               <div className="p-4">
-                <h3 className=" text-sm md:text-lg font-bold text-primary group-hover:text-primary/80 transition-colors truncate whitespace-nowrap overflow-hidden">
+                <h3 className="text-sm md:text-lg font-bold text-primary group-hover:text-primary/80 transition-colors truncate whitespace-nowrap overflow-hidden">
                   {item.title}
                 </h3>
 
